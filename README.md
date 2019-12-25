@@ -15,8 +15,7 @@ AORURA will respond with `Y` or `N` byte, depending on whether command was
 successfully applied or not, respectively.
 
 There is one more command, `SS`, which causes AORURA to respond with 2-byte
-command representation of its current state. It's not currently implemented
-as part of this project.
+command representation of its current state.
 
 Valid color bytes:
 
@@ -29,7 +28,8 @@ Valid color bytes:
 
 ## Library
 
-[`aorura`](self) is a Rust crate for managing AORURA LED state. Usage example:
+[`aorura`](self) is a Rust crate that implements [AORURA protocol](#protocol).
+Usage example:
 
 ```rust
 use aorura::*;
@@ -38,9 +38,10 @@ use failure::*;
 fn main() -> Fallible<()> {
   let led = Led::open("/dev/ttyUSB0")?;
 
-  led.set(State::Off)?; // turns off LED
   led.set(State::Flash(Color::Red))?; // cause LED to flash with red color
+  led.set(State::Off)?; // turn off LED
 
+  assert_eq!(led.get()?, State::Off);
   assert_eq!(State::try_from(b"B*")?, State::Flash(Color::Blue));
 
   Ok(())

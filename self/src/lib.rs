@@ -38,6 +38,8 @@ pub enum State {
 
 pub type Command = [u8; 2];
 
+pub const STATUS_COMMAND: Command = [b'S', b'S'];
+
 impl Into<Command> for State {
     fn into(self) -> Command {
         match self {
@@ -72,6 +74,16 @@ impl Led {
         port.configure(&SERIAL_SETTINGS)?;
 
         Ok(Self(port))
+    }
+
+    /// Get AORURA LED state.
+    pub fn get(mut self) -> Fallible<State> {
+        let mut cmd = [0u8; 2];
+
+        self.0.write(&STATUS_COMMAND)?;
+        self.0.read_exact(&mut cmd)?;
+
+        State::try_from(&cmd)
     }
 
     /// Set AORURA LED to given state.

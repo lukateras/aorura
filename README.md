@@ -41,6 +41,8 @@ fn main() -> Fallible<()> {
   led.set(State::Off)?; // turns off LED
   led.set(State::Flash(Color::Red))?; // cause LED to flash with red color
 
+  assert_eq!(State::try_from(b"B*")?, State::Flash(Color::Blue));
+
   Ok(())
 }
 ```

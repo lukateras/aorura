@@ -50,7 +50,7 @@ impl Into<Command> for State {
 pub struct Led(SystemPort);
 
 impl Led {
-    // Open AURORA LED serial port.
+    // Open AORURA LED serial port.
     pub fn open<P: AsRef<Path>>(path: P) -> Fallible<Self> {
         let mut port = serial::open(path.as_ref())?;
         port.configure(&SERIAL_SETTINGS)?;

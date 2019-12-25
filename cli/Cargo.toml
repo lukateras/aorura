@@ -1,0 +1,10 @@
+[package]
+name = "aorura-cli"
+version = "0.0.0"
+edition = "2018"
+
+[dependencies]
+aorura = { path = "../self" }
+docopt = "1.0.2"
+failure = "0.1.5"
+serde = "1.0.101"

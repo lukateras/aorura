@@ -65,6 +65,22 @@ States: aurora, flash:COLOR, off, static:COLOR
 Colors: blue, green, orange, purple, red, yellow
 ```
 
+Usage example:
+
+```shell
+path=/dev/ttyUSB0
+original_state=$(aorura-cli $path)
+
+# Enable flashing yellow LED:
+aorura-cli $path --set flash:yellow
+
+# Do something time-consuming:
+sleep 10
+
+# Revert back to original LED state:
+aorura-cli $path --set $original_state
+```
+
 ## Emulator
 
 [`aorura-emu`](emu) is a PTY-based AORURA emulator. It can be used with

@@ -8,35 +8,49 @@ use serde::*;
 use std::env;
 use std::path::PathBuf;
 
-fn deserialize_state<'de, D>(deserializer: D) -> Result<State, D::Error>
+fn deserialize_option_state<'de, D>(deserializer: D) -> Result<Option<State>, D::Error>
 where
     D: Deserializer<'de>,
 {
-    let input = String::deserialize(deserializer)?;
+    let maybe_input: Option<String> = Option::deserialize(deserializer)?;
+    if maybe_input == None {
+        return Ok(None);
+    }
+
+    let input = maybe_input.unwrap();
     let input_segments: Vec<&str> = input.split(':').collect();
 
-    match input_segments[..] {
+    let state = match input_segments[..] {
         [state_str, color_str] if ["flash", "static"].contains(&state_str) => {
             let color = Color::deserialize(color_str.into_deserializer())?;
             match state_str {
-                "flash" => Ok(State::Flash(color)),
-                "static" => Ok(State::Static(color)),
+                "flash" => State::Flash(color),
+                "static" => State::Static(color),
                 _ => unreachable!(),
             }
         }
-        _ => State::deserialize(input.into_deserializer()),
-    }
+        _ => State::deserialize(input.into_deserializer())?,
+    };
+
+    Ok(Some(state))
+}
+
+fn state_into_string(state: State) -> Fallible<String> {
+    Ok(match state {
+        State::Flash(color) => format!("flash:{}", serde_plain::to_string(&color)?),
+        State::Static(color) => format!("static:{}", serde_plain::to_string(&color)?),
+        _ => serde_plain::to_string(&state)?,
+    })
 }
 
 const USAGE: &'static str = "
-Usage: aorura-cli --path PATH --state STATE
+Usage: aorura-cli <path> [--set STATE]
        aorura-cli --help
 
-Sets AORURA LED state.
+Gets, and optionally, sets AORURA LED state.
 
 Options:
-  --path PATH        path to AORURA serial port
-  --state STATE      desired LED state
+  --set STATE  set LED to given state
 
 States: aurora, flash:COLOR, off, static:COLOR
 Colors: blue, green, orange, purple, red, yellow
@@ -44,9 +58,9 @@ Colors: blue, green, orange, purple, red, yellow
 
 #[derive(Debug, Deserialize)]
 struct Args {
-    flag_path: PathBuf,
-    #[serde(deserialize_with = "deserialize_state")]
-    flag_state: State,
+    arg_path: PathBuf,
+    #[serde(deserialize_with = "deserialize_option_state")]
+    flag_set: Option<State>,
 }
 
 fn main() -> Fallible<()> {
@@ -55,5 +69,16 @@ fn main() -> Fallible<()> {
         .deserialize()
         .unwrap_or_else(|e| e.exit());
 
-    Led::open(args.flag_path)?.set(args.flag_state)
+    let led = Led::open(args.arg_path)?;
+    let state = match args.flag_set {
+        Some(state) => {
+            led.set(state)?;
+            state
+        }
+        None => led.get()?,
+    };
+
+    println!("{}", state_into_string(state)?);
+
+    Ok(())
 }

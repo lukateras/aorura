@@ -10,4 +10,10 @@ in
     src = gitignoreSource ./.;
     cargoDir = "cli";
   };
+
+  aorura-emu = buildRustPackage rustPlatform {
+    name = "aorura-emu";
+    src = gitignoreSource ./.;
+    cargoDir = "emu";
+  };
 }

@@ -17,6 +17,8 @@ successfully applied or not, respectively.
 There is one more command, `SS`, which causes AORURA to respond with 2-byte
 command representation of its current state.
 
+AORURA's initial LED state is flashing blue (`B*`).
+
 Valid color bytes:
 
 - `B`: blue

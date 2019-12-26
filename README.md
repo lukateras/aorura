@@ -50,17 +50,16 @@ fn main() -> Fallible<()> {
 
 ## CLI
 
-[`aorura-cli`](cli) is a CLI tool built on top of [`aorura`](#library).
+[`aorura-cli`](cli) is a state manager CLI built on top of [`aorura`](#library).
 
 ```
-Usage: aorura-cli --path PATH --state STATE
+Usage: aorura-cli <path> [--set STATE]
        aorura-cli --help
 
-Sets AORURA LED state.
+Gets, and optionally, sets AORURA LED state.
 
 Options:
-  --path PATH        path to AORURA serial port
-  --state STATE      desired LED state
+  --set STATE  set LED to given state
 
 States: aurora, flash:COLOR, off, static:COLOR
 Colors: blue, green, orange, purple, red, yellow

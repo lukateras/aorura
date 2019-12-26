@@ -8,3 +8,4 @@ aorura = { path = "../self" }
 docopt = "1.0.2"
 failure = "0.1.5"
 serde = "1.0.101"
+serde_plain = "0.3.0"

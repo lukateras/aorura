@@ -1,0 +1,13 @@
+[package]
+name = "aorura-emu"
+version = "0.0.0"
+edition = "2018"
+
+[dependencies]
+aorura = { path = "../self" }
+docopt = "1.0.2"
+env_logger = "0.7.1"
+failure = "0.1.5"
+log = "0.4.8"
+nix = "0.16.1"
+serde = "1.0.101"

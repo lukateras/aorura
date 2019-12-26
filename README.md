@@ -66,9 +66,20 @@ States: aurora, flash:COLOR, off, static:COLOR
 Colors: blue, green, orange, purple, red, yellow
 ```
 
-## Compatibility
+## Emulator
 
-Fully compatible with:
+[`aorura-emu`](emu) is a PTY-based AORURA emulator. It can be used with
+[CLI](#cli) in lieu of [compatible hardware](#compatible-hardware). For
+example, this emulator is used to make status LED visible on HoloPortOS VM.
+
+```
+Usage: aorura-emu <path>
+       aorura-emu --help
+
+Emulates AORURA LED device over a PTY symlinked to given path.
+```
+
+## Compatible hardware
 
 - AORURA-3 (HoloPort and HoloPort+)
 

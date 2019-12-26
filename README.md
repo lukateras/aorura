@@ -38,7 +38,7 @@ use aorura::*;
 use failure::*;
 
 fn main() -> Fallible<()> {
-  let led = Led::open("/dev/ttyUSB0")?;
+  let mut led = Led::open("/dev/ttyUSB0")?;
 
   led.set(State::Flash(Color::Red))?; // cause LED to flash with red color
   led.set(State::Off)?; // turn off LED

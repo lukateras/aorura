@@ -69,7 +69,7 @@ fn main() -> Fallible<()> {
         .deserialize()
         .unwrap_or_else(|e| e.exit());
 
-    let led = Led::open(args.arg_path)?;
+    let mut led = Led::open(args.arg_path)?;
     let state = match args.flag_set {
         Some(state) => {
             led.set(state)?;

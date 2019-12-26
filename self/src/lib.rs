@@ -77,7 +77,7 @@ impl Led {
     }
 
     /// Get AORURA LED state.
-    pub fn get(mut self) -> Fallible<State> {
+    pub fn get(&mut self) -> Fallible<State> {
         let mut cmd = [0u8; 2];
 
         self.0.write(&STATUS_COMMAND)?;
@@ -87,7 +87,7 @@ impl Led {
     }
 
     /// Set AORURA LED to given state.
-    pub fn set(mut self, state: State) -> Fallible<()> {
+    pub fn set(&mut self, state: State) -> Fallible<()> {
         let cmd: Command = state.into();
         let mut output = [0u8; 1];
 

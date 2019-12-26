@@ -1,4 +1,4 @@
-use failure::{*, Error};
+use failure::{Error, *};
 use num_enum::*;
 use serde::*;
 use serial::*;
@@ -46,7 +46,7 @@ impl Into<Command> for State {
             State::Aurora => [b'A', b'<'],
             State::Flash(color) => [color.into(), b'*'],
             State::Static(color) => [color.into(), b'!'],
-            State::Off => [b'X', b'X']
+            State::Off => [b'X', b'X'],
         }
     }
 }

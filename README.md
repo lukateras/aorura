@@ -14,8 +14,8 @@ AORURA exposes serial 19200n8 connection. Every command is exactly two bytes:
 AORURA will respond with `Y` or `N` byte, depending on whether command was
 successfully applied or not, respectively.
 
-There is one more command, `SS`, which causes AORURA to respond with 2-byte
-command representation of its current state.
+`SS` is a special case command that causes AORURA to respond with command
+representing its current LED state.
 
 AORURA's initial LED state is flashing blue (`B*`).
 

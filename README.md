@@ -1,6 +1,6 @@
 # AORURA
 
-AORURA LED library, state manager CLI and emulator.
+AORURA LED library, state manager CLI, and emulator.
 
 ## Protocol
 

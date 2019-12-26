@@ -15,7 +15,7 @@ const SERIAL_SETTINGS: PortSettings = PortSettings {
     stop_bits: Stop1,
 };
 
-#[derive(Debug, Deserialize, IntoPrimitive, PartialEq, TryFromPrimitive)]
+#[derive(Clone, Copy, Debug, Deserialize, IntoPrimitive, PartialEq, Serialize, TryFromPrimitive)]
 #[serde(rename_all = "lowercase")]
 #[repr(u8)]
 pub enum Color {
@@ -27,7 +27,7 @@ pub enum Color {
     Yellow = b'Y',
 }
 
-#[derive(Debug, Deserialize, PartialEq)]
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Serialize)]
 #[serde(rename_all = "lowercase")]
 pub enum State {
     Aurora,

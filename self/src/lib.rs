@@ -40,6 +40,10 @@ pub type Command = [u8; 2];
 
 pub const STATUS_COMMAND: Command = [b'S', b'S'];
 
+impl Default for State {
+    fn default() -> Self { State::Flash(Color::Blue) }
+}
+
 impl Into<Command> for State {
     fn into(self) -> Command {
         match self {

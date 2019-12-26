@@ -1,6 +1,6 @@
 # AORURA
 
-AORURA LED library, state manager CLI, and emulator.
+AORURA library, LED manager CLI, and emulator.
 
 ## Protocol
 
@@ -52,7 +52,7 @@ fn main() -> Fallible<()> {
 
 ## CLI
 
-[`aorura-cli`](cli) is a state manager CLI built on top of [`aorura`](#library).
+[`aorura-cli`](cli) is LED manager CLI built on top of [`aorura`](#library).
 
 ```
 Usage: aorura-cli <path> [--set STATE]

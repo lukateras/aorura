@@ -1,6 +1,6 @@
 repository:
   name: aorura
-  description: AORURA LED library, state manager CLI, and emulator
+  description: AORURA library, LED manager CLI, and emulator
   topics: led
   private: false
   has_issues: true

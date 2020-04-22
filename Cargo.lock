@@ -10,7 +10,7 @@ dependencies = [
 
 [[package]]
 name = "aorura"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "failure 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "num_enum 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -22,7 +22,7 @@ dependencies = [
 name = "aorura-cli"
 version = "0.0.0"
 dependencies = [
- "aorura 0.0.0",
+ "aorura 0.1.0",
  "docopt 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "failure 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.104 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -33,7 +33,7 @@ dependencies = [
 name = "aorura-emu"
 version = "0.0.0"
 dependencies = [
- "aorura 0.0.0",
+ "aorura 0.1.0",
  "docopt 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "env_logger 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "failure 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
